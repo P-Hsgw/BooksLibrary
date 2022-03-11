@@ -15,20 +15,29 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(books.items) { book in
-                    Text(book.title)
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(book.title)
+                                .font(.headline)
+                            Text(book.author)
+                        }
+                        Spacer()
+                        Text(book.isRead ? "Book read" : "Book not read")
+                    }
                 }.onDelete(perform: removeItems)
             }
             .toolbar {
-                Button {
-                    showingAddView = true
-                } label: {
-                    Image(systemName: "plus")
+                HStack{
+                    Button {
+                        showingAddView = true
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                    EditButton()
                 }
             }
             .navigationTitle("My Books")
         }
-        
-
         .sheet(isPresented: $showingAddView) {
             AddView(books: books)
         }

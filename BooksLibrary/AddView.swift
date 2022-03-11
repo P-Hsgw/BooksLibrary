@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddView: View {
     @ObservedObject var books: Books
+    @Environment(\.dismiss) var dismiss
     
     @State private var title = ""
     @State private var author = ""
@@ -26,6 +27,7 @@ struct AddView: View {
                 Button("Save") {
                     let item = BookItem(title: title, author: author, isRead: read)
                     books.items.append(item)
+                    dismiss()
                 }
             }
         }

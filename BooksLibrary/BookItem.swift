@@ -11,7 +11,6 @@ struct BookItem: Identifiable, Codable {
     var id = UUID()
     let title: String
     let author: String
-    let isRead: Bool
-    
+    var isRead: Bool
 }
  
