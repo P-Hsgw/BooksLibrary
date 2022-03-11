@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AddView: View {
+    @ObservedObject var books: Books
+    
     @State private var title = ""
     @State private var author = ""
     @State private var read = false
@@ -17,13 +19,22 @@ struct AddView: View {
             Form {
                 TextField("Title", text: $title)
                 TextField("Author", text: $author)
+                Toggle("Did you read it?", isOn: $read)
+            }
+            .navigationTitle("Add new book")
+            .toolbar{
+                Button("Save") {
+                    let item = BookItem(title: title, author: author, isRead: read)
+                    books.item.append(item)
+                }
             }
         }
+
     }
 }
 
 struct AddView_Previews: PreviewProvider {
     static var previews: some View {
-        AddView()
+        AddView(books: Books())
     }
 }

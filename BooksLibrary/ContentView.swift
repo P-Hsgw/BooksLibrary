@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var books = Books()
+    @State private var showingAddView = false
     
     var body: some View {
         NavigationView {
@@ -19,13 +20,17 @@ struct ContentView: View {
             }
             .toolbar {
                 Button {
-                    let book = BookItem(title: "Book", author: "Author", isRead: true)
-                    books.item.append(book)
+                    showingAddView = true
                 } label: {
                     Image(systemName: "plus")
                 }
             }
+            .navigationTitle("My Books")
+        }
+        
 
+        .sheet(isPresented: $showingAddView) {
+            AddView(books: books)
         }
     }
     func removeItems (at offsets: IndexSet) {
