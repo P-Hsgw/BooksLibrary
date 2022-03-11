@@ -8,9 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var books = Books()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            List {
+                ForEach(books.item, id:\.id ) { book in
+                    Text(book.title)
+                }.onDelete(perform: removeItems)
+            }
+            .toolbar {
+                Button {
+                    let book = BookItem(title: "Book", author: "Author", isRead: true)
+                    books.item.append(book)
+                } label: {
+                    Image(systemName: "plus")
+                }
+            }
+
+        }
+    }
+    func removeItems (at offsets: IndexSet) {
+        books.item.remove(atOffsets: offsets)
     }
 }
 
