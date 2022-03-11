@@ -8,5 +8,14 @@
 import Foundation
 
 class Books: ObservableObject {
-    @Published var item = [BookItem]()
+    @Published var items = [BookItem]() {
+        didSet {
+            let encoder = JSONEncoder()
+            
+            if let encoded = try? encoder.encode(items) {
+                UserDefaults.standard.set(encoded, forKey: "Items")
+            }
+        }
+    }
+    
 }

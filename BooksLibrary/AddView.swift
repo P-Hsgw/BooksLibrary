@@ -25,7 +25,7 @@ struct AddView: View {
             .toolbar{
                 Button("Save") {
                     let item = BookItem(title: title, author: author, isRead: read)
-                    books.item.append(item)
+                    books.items.append(item)
                 }
             }
         }

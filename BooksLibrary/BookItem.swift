@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct BookItem: Identifiable {
-    let id = UUID()
+struct BookItem: Identifiable, Codable {
+    var id = UUID()
     let title: String
     let author: String
     let isRead: Bool
