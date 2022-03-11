@@ -19,10 +19,10 @@ struct ContentView: View {
                         VStack(alignment: .leading) {
                             Text(book.title)
                                 .font(.headline)
-                            Text(book.author)
+                            Text("By: " + book.author)
                         }
                         Spacer()
-                        Text(book.isRead ? "Book read" : "Book not read")
+                        Text(book.isRead ? "Read" : "Want to read")
                     }
                 }.onDelete(perform: removeItems)
             }

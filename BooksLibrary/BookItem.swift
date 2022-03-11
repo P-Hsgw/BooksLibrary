@@ -13,4 +13,3 @@ struct BookItem: Identifiable, Codable {
     let author: String
     var isRead: Bool
 }
- 

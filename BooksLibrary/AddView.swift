@@ -31,7 +31,6 @@ struct AddView: View {
                 }
             }
         }
-
     }
 }
 

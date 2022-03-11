@@ -25,7 +25,6 @@ class Books: ObservableObject {
                 return
             }
         }
-        
         items = []
     }
 }
