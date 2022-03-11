@@ -13,6 +13,7 @@
 		7497DB0627DAF19600A9C29D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7497DB0527DAF19600A9C29D /* Preview Assets.xcassets */; };
 		7497DB0D27DAF1B800A9C29D /* BookItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7497DB0C27DAF1B800A9C29D /* BookItem.swift */; };
 		7497DB0F27DAF1C300A9C29D /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7497DB0E27DAF1C300A9C29D /* Books.swift */; };
+		7497DB1127DB058200A9C29D /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7497DB1027DB058200A9C29D /* AddView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		7497DB0527DAF19600A9C29D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7497DB0C27DAF1B800A9C29D /* BookItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookItem.swift; sourceTree = "<group>"; };
 		7497DB0E27DAF1C300A9C29D /* Books.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Books.swift; sourceTree = "<group>"; };
+		7497DB1027DB058200A9C29D /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			children = (
 				7497DAFE27DAF19500A9C29D /* BooksLibraryApp.swift */,
 				7497DB0027DAF19500A9C29D /* ContentView.swift */,
+				7497DB1027DB058200A9C29D /* AddView.swift */,
 				7497DB0C27DAF1B800A9C29D /* BookItem.swift */,
 				7497DB0E27DAF1C300A9C29D /* Books.swift */,
 				7497DB0227DAF19600A9C29D /* Assets.xcassets */,
@@ -145,6 +148,7 @@
 			files = (
 				7497DB0F27DAF1C300A9C29D /* Books.swift in Sources */,
 				7497DB0127DAF19500A9C29D /* ContentView.swift in Sources */,
+				7497DB1127DB058200A9C29D /* AddView.swift in Sources */,
 				7497DB0D27DAF1B800A9C29D /* BookItem.swift in Sources */,
 				7497DAFF27DAF19500A9C29D /* BooksLibraryApp.swift in Sources */,
 			);

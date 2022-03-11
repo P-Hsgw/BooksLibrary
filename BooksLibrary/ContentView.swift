@@ -13,7 +13,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(books.item, id:\.id ) { book in
+                ForEach(books.item) { book in
                     Text(book.title)
                 }.onDelete(perform: removeItems)
             }
