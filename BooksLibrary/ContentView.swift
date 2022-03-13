@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(books.items) { book in
+                ForEach($books.items) { $book in
                     HStack {
                         VStack(alignment: .leading) {
                             Text(book.title)
@@ -22,7 +22,17 @@ struct ContentView: View {
                             Text("By: " + book.author)
                         }
                         Spacer()
-                        Text(book.isRead ? "Read" : "Want to read")
+g                        Button(book.isRead ? "Read" : "Want to read") {
+                            let replacedBook = BookItem(title: book.title, author: book.author, isRead: !book.isRead)
+                            if let i = books.items.firstIndex(of: book) {
+                                books.items[i] = replacedBook
+                            }
+//                            if var currentBook = books.items.first(where: {$0.id == book.id}) {
+//                                currentBook = replacedBook
+//                                print("This is currentBook \(currentBook)")
+//                                print("This is real book from library \(books.items)")
+//                            }
+                        }
                     }
                 }.onDelete(perform: removeItems)
             }
@@ -45,6 +55,7 @@ struct ContentView: View {
     func removeItems (at offsets: IndexSet) {
         books.items.remove(atOffsets: offsets)
     }
+
 }
 
 struct ContentView_Previews: PreviewProvider {

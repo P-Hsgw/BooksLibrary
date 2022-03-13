@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BookItem: Identifiable, Codable {
+struct BookItem: Identifiable, Codable, Equatable {
     var id = UUID()
     let title: String
     let author: String
