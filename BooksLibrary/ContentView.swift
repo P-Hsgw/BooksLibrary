@@ -45,7 +45,6 @@ struct ContentView: View {
                         Image(systemName: "plus")
                             .foregroundColor(.orange)
                     }
-                    EditButton()
                 }
             }
             .navigationTitle("My Books")
