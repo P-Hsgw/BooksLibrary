@@ -30,8 +30,8 @@ struct ContentView: View {
                                 books.items[i] = replacedBook
                             }
                         } label: {
-                            Image(systemName: (book.isRead ? "book.closed.fill" : "book"))
-                                .foregroundColor(.orange)
+                            Image(systemName: (book.isRead ? "book.fill" : "book"))
+                                .foregroundColor(book.isRead ? .orange : .gray)
                         }
                     }
                 }.onDelete(perform: removeItems)
