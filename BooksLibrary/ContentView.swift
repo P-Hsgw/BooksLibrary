@@ -22,18 +22,15 @@ struct ContentView: View {
                             Text("By: " + book.author)
                         }
                         Spacer()
-                        Button(book.isRead ? "Read" : "Want to read") {
+                        Button {
                             let replacedBook = BookItem(title: book.title, author: book.author, isRead: !book.isRead)
                             if let i = books.items.firstIndex(of: book) {
                                 books.items[i] = replacedBook
                             }
-//                            if var currentBook = books.items.first(where: {$0.id == book.id}) {
-//                                currentBook = replacedBook
-//                                print("This is currentBook \(currentBook)")
-//                                print("This is real book from library \(books.items)")
-//                            }
+                        } label: {
+                            Label(book.isRead ? "Read" : "Want to read", systemImage: (book.isRead ? "book.fill" : "book"))
+                                .foregroundColor(.orange)
                         }
-                        .foregroundColor(.orange)
                     }
                 }.onDelete(perform: removeItems)
             }
@@ -43,7 +40,6 @@ struct ContentView: View {
                         showingAddView = true
                     } label: {
                         Image(systemName: "plus")
-                            .foregroundColor(.orange)
                     }
                 }
             }
@@ -56,7 +52,7 @@ struct ContentView: View {
     func removeItems (at offsets: IndexSet) {
         books.items.remove(atOffsets: offsets)
     }
-
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
