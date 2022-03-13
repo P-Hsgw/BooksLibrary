@@ -14,6 +14,7 @@ struct AddView: View {
     @State private var title = ""
     @State private var author = ""
     @State private var read = false
+    @State private var alert = false;
     
     var body: some View {
         NavigationView {
@@ -26,11 +27,17 @@ struct AddView: View {
             .navigationTitle("Add new book")
             .toolbar{
                 Button("Save") {
-                    let item = BookItem(title: title, author: author, isRead: read)
-                    books.items.append(item)
-                    dismiss()
+                    if title == "" || author == "" {
+                        alert = true;
+                    } else {
+                        let item = BookItem(title: title, author: author, isRead: read)
+                        books.items.append(item)
+                        dismiss()
+                    }
                 }
             }
+        }.alert("Please fill out Title and Author", isPresented: $alert) {
+            Button("OK") { }
         }
     }
 }
