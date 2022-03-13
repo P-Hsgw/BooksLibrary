@@ -22,7 +22,7 @@ struct ContentView: View {
                             Text("By: " + book.author)
                         }
                         Spacer()
-g                        Button(book.isRead ? "Read" : "Want to read") {
+                        Button(book.isRead ? "Read" : "Want to read") {
                             let replacedBook = BookItem(title: book.title, author: book.author, isRead: !book.isRead)
                             if let i = books.items.firstIndex(of: book) {
                                 books.items[i] = replacedBook
