@@ -21,6 +21,7 @@ struct AddView: View {
                 TextField("Title", text: $title)
                 TextField("Author", text: $author)
                 Toggle("Did you read it?", isOn: $read)
+                    .tint(.orange)
             }
             .navigationTitle("Add new book")
             .toolbar{

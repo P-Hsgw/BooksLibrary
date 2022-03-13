@@ -33,6 +33,7 @@ struct ContentView: View {
 //                                print("This is real book from library \(books.items)")
 //                            }
                         }
+                        .foregroundColor(.orange)
                     }
                 }.onDelete(perform: removeItems)
             }
@@ -42,6 +43,7 @@ struct ContentView: View {
                         showingAddView = true
                     } label: {
                         Image(systemName: "plus")
+                            .foregroundColor(.orange)
                     }
                     EditButton()
                 }
