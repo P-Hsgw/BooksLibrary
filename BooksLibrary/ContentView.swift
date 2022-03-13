@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach($books.items) { $book in
+                ForEach(books.items) { book in
                     HStack {
                         VStack(alignment: .leading) {
                             Text(book.title)
@@ -23,12 +23,14 @@ struct ContentView: View {
                         }
                         Spacer()
                         Button {
+                            // Create new BookItem with changed isRead Bool
                             let replacedBook = BookItem(title: book.title, author: book.author, isRead: !book.isRead)
+                            // Find current book index, and replace current book with new book
                             if let i = books.items.firstIndex(of: book) {
                                 books.items[i] = replacedBook
                             }
                         } label: {
-                            Label(book.isRead ? "Read" : "Want to read", systemImage: (book.isRead ? "book.fill" : "book"))
+                            Image(systemName: (book.isRead ? "book.closed.fill" : "book"))
                                 .foregroundColor(.orange)
                         }
                     }
