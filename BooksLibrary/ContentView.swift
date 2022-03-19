@@ -25,7 +25,7 @@ struct ContentView: View {
                         }
                         Spacer()
                         Button {
-                            print(book)
+                            toggleReadStatus(book: book)
                         } label: {
                             Image(systemName: (book.read ? "book.fill" : "book"))
                                 .foregroundColor(book.read ? .orange : .gray)
@@ -49,12 +49,18 @@ struct ContentView: View {
             .navigationTitle("My books")
         }
     }
+    
     func deleteBooks(at offsets: IndexSet) {
         for offset in offsets {
             // Find this book in fetch request
             let book = books[offset]
             moc.delete(book)
         }
+        try? moc.save()
+    }
+    
+    func toggleReadStatus(book: Book) {
+        book.read.toggle()
         try? moc.save()
     }
 
