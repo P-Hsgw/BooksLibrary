@@ -30,6 +30,7 @@ struct ContentView: View {
                             Image(systemName: (book.read ? "book.fill" : "book"))
                                 .foregroundColor(book.read ? .orange : .gray)
                         }
+                        .animation(.default, value: book.read)
                         
                     }
                 }
