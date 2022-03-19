@@ -8,54 +8,58 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var books = Books()
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var books: FetchedResults<Book>
+    
     @State private var showingAddView = false
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(books.items) { book in
+                ForEach(books) { book in
                     HStack {
                         VStack(alignment: .leading) {
-                            Text(book.title)
+                            Text(book.title ?? "No title")
                                 .font(.headline)
-                            Text("By: " + book.author)
+                            Text("By: \(book.author ?? "No author")" )
                         }
                         Spacer()
                         Button {
-                            // Create new BookItem with changed isRead Bool
-                            let replacedBook = BookItem(title: book.title, author: book.author, isRead: !book.isRead)
-                            // Find current book index, and replace current book with new book
-                            if let i = books.items.firstIndex(of: book) {
-                                books.items[i] = replacedBook
-                            }
+                            print(book)
                         } label: {
-                            Image(systemName: (book.isRead ? "book.fill" : "book"))
-                                .foregroundColor(book.isRead ? .orange : .gray)
+                            Image(systemName: (book.read ? "book.fill" : "book"))
+                                .foregroundColor(book.read ? .orange : .gray)
                         }
-                    }
-                }.onDelete(perform: removeItems)
-            }
-            .toolbar {
-                HStack{
-                    Button {
-                        showingAddView = true
-                    } label: {
-                        Image(systemName: "plus")
+                        
                     }
                 }
+                .onDelete(perform: deleteBooks)
+
             }
-            .navigationTitle("My Books")
-        }
-        .sheet(isPresented: $showingAddView) {
-            AddView(books: books)
+            .toolbar {
+                Button {
+                    showingAddView = true
+                } label: {
+                    Image(systemName: "plus")
+                }
+            }
+            .sheet(isPresented: $showingAddView) {
+                AddView()
+            }
+            .navigationTitle("My books")
         }
     }
-    func removeItems (at offsets: IndexSet) {
-        books.items.remove(atOffsets: offsets)
+    func deleteBooks(at offsets: IndexSet) {
+        for offset in offsets {
+            // Find this book in fetch request
+            let book = books[offset]
+            moc.delete(book)
+        }
+        try? moc.save()
     }
-    
+
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

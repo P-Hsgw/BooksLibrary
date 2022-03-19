@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct AddView: View {
-    @ObservedObject var books: Books
+    @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
+    
     
     @State private var title = ""
     @State private var author = ""
@@ -30,8 +31,13 @@ struct AddView: View {
                     if title == "" || author == "" {
                         alert = true;
                     } else {
-                        let item = BookItem(title: title, author: author, isRead: read)
-                        books.items.append(item)
+                        let item = Book(context: moc)
+                        item.id = UUID()
+                        item.title = title
+                        item.author = author
+                        item.read = read
+                        
+                        try? moc.save()
                         dismiss()
                     }
                 }
@@ -39,11 +45,5 @@ struct AddView: View {
         }.alert("Please fill out Title and Author", isPresented: $alert) {
             Button("OK") { }
         }
-    }
-}
-
-struct AddView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddView(books: Books())
     }
 }
